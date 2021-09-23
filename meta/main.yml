@@ -12,5 +12,5 @@ galaxy_info:
   galaxy_tags:
     - system
     - debian
-    - mysql server
-    - mysql community server
+    - mysql-server
+    - mysql-community-server
