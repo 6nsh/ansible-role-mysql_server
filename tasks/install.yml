@@ -16,9 +16,9 @@
     state: present
 
 - name: Add the MySQL Server repository to APT sources
-  template: >
-    src=mysql_server.list.j2
-    dest=/etc/apt/sources.list.d/mysql_server.list
+  template:
+    src: mysql_server.list.j2
+    dest: /etc/apt/sources.list.d/mysql_server.list
 
 - name: Set MySQL Server root password
   debconf:
