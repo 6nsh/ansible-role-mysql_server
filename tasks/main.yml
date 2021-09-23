@@ -1,2 +1,10 @@
 ---
-# tasks file for mysql_server
+- import_tasks: install.yml
+  tags:
+    - install_mysql_server
+    - install
+
+- import_tasks: configure.yml
+  tags:
+    - configure_mysql_server
+    - configure

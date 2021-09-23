@@ -1,0 +1,53 @@
+---
+- name: Update repositories cache and install a few prerequisite packages which let apt use packages over HTTPS
+  apt:
+    pkg:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+    update_cache: yes
+
+- name: Add official MySQL Server package authentication key
+  apt_key:
+    keyserver: pgp.mit.edu
+    id: 5072E1F5
+    state: present
+
+- name: Add the MySQL Server repository to APT sources
+  template: >
+    src=mysql_server.list.j2
+    dest=/etc/apt/sources.list.d/mysql_server.list
+
+- name: Set MySQL Server root password
+  debconf:
+    name: mysql-community-server
+    question: mysql-community-server/root-pass
+    value: "{{ mysql_root_password }}"
+    vtype: password
+
+- name: Confirm MySQL Server root password
+  debconf:
+    name: mysql-community-server
+    question: mysql-community-server/re-root-pass
+    value: "{{ mysql_root_password }}"
+    vtype: password
+
+- name: Enable Legacy Authentication Method for MySQL Server
+  debconf:
+    name: mysql-community-server
+    question: mysql-server/default-auth-override
+    value: Use Legacy Authentication Method (Retain MySQL 5.x Compatibility)
+    vtype: select
+
+- name: Install/Update MySQL Community Server
+  apt:    
+    name: mysql-server
+    state: latest
+    update_cache: yes
+    cache_valid_time: 600
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  notify:
+    - restart mysql
