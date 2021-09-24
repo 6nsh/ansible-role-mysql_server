@@ -12,6 +12,12 @@
   notify:
     - restart mysql
 
+- name: Activate passwordless access for root user
+  template:
+    src: .my.cnf.j2
+    dest: /root/.my.cnf
+    mode: 0400
+
 - name: Root password is present
   no_log: true
   mysql_user:
@@ -20,12 +26,6 @@
     password: '{{ mysql_root_password | mandatory }}'
     state: present
     login_unix_socket: "{{ login_unix_socket | default(omit) }}"
-
-- name: Activate passwordless access for root user
-  template:
-    src: .my.cnf.j2
-    dest: /root/.my.cnf
-    mode: 0400
 
 - name: Delete test databases
   mysql_db:
