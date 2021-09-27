@@ -51,7 +51,6 @@ collation_server = utf8_unicode_ci
 character_set_server = utf8
 init_connect = 'SET collation_connection = utf8_general_ci'
 init_connect = 'SET NAMES utf8'
-innodb_file_per_table
 #
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
@@ -76,8 +75,8 @@ myisam-recover-options  = BACKUP
 #
 # * Query Cache Configuration
 #
-query_cache_limit	= 1M
-query_cache_size        = 16M
+# query_cache_limit	= 1M
+# query_cache_size        = 16M
 #
 # * Logging and Replication
 #
@@ -106,8 +105,9 @@ max_binlog_size         = 100M
 #
 # * InnoDB
 #
-# InnoDB is enabled by default with a 10MB datafile in /var/lib/mysql/.
-# Read the manual for more InnoDB related options. There are many!
+innodb_file_per_table
+innodb_flush_method = O_DIRECT
+innodb_log_file_size = 1G
 #
 # * Security Features
 #
