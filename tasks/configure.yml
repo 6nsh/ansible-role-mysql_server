@@ -6,9 +6,9 @@
     state: present
 
 - name: Copy my.cnf config file
-  template: >
-    src=my.cnf.j2
-    dest=/etc/mysql/my.cnf
+  template: 
+    src: my.cnf.j2
+    dest: /etc/mysql/my.cnf
   notify:
     - restart mysql
 

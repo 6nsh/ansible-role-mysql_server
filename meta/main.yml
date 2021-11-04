@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: mysql_server
+  namespace: 6nsh
   author: Artem Kasianchuk
   description: Install and configure MySQL Community Server 8.0
   license: license (GPL-2.0-or-later, MIT, etc)
@@ -14,5 +15,5 @@ galaxy_info:
   galaxy_tags:
     - system
     - debian
-    - mysql-server
-    - mysql-community-server
+    - mysql_server
+    - mysql_community_server

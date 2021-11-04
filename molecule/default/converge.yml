@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include zabbix_proxy"
+      include_role:
+        name: "zabbix_proxy"
