@@ -1,13 +1,13 @@
 ---
-- name: Update repositories cache and install a few prerequisite packages which let apt use packages over HTTPS
+- name: Update repo cache and install a few prerequisite packages
   apt:
     pkg:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - gnupg2
-    - software-properties-common
-    update_cache: yes
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+    update_cache: true
 
 - name: Add official MySQL Server package authentication key
   apt_key:
@@ -19,6 +19,7 @@
   template:
     src: mysql_server.list.j2
     dest: /etc/apt/sources.list.d/mysql_server.list
+    mode: '0644'
 
 - name: Set MySQL Server root password
   debconf:
@@ -26,6 +27,7 @@
     question: mysql-community-server/root-pass
     value: "{{ mysql_root_password }}"
     vtype: password
+  changed_when: false
 
 - name: Confirm MySQL Server root password
   debconf:
@@ -33,6 +35,7 @@
     question: mysql-community-server/re-root-pass
     value: "{{ mysql_root_password }}"
     vtype: password
+  changed_when: false
 
 - name: Enable Legacy Authentication Method for MySQL Server
   debconf:
@@ -43,11 +46,14 @@
 
 - name: Install/Update MySQL Community Server
   apt:
-    update_cache: yes
+    update_cache: true
     name: mysql-server
-    state: latest
-    # cache_valid_time: 600
+    state: present
   environment:
     DEBIAN_FRONTEND: noninteractive
-  notify:
-    - restart mysql
+
+- name: Start and eneble MySQL Community Server service
+  service:
+    name: mysql
+    state: started
+    enabled: true

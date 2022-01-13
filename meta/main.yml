@@ -4,16 +4,16 @@ galaxy_info:
   namespace: 6nsh
   author: Artem Kasianchuk
   description: Install and configure MySQL Community Server 8.0
-  license: license (GPL-2.0-or-later, MIT, etc)
+  license: MIT
   min_ansible_version: 2.9
   platforms:
-  - name: Debian
-    versions:
-    - bullseye
-    - buster
-    - stretch
+    - name: Debian
+      versions:
+        - bullseye
+        - buster
+        - stretch
   galaxy_tags:
     - system
     - debian
-    - mysql_server
-    - mysql_community_server
+    - databases
+    - mysql

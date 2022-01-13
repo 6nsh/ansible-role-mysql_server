@@ -4,17 +4,9 @@
 - name: enable mysql service
   service:
     name: mysql
-    enabled: yes
+    enabled: true
 
-- name: check mysql service status
-  shell: systemctl status mysql
-
-- name: check mysql version
-  shell: mysql -v
-  register: mysql
-- debug: var=mysql.stdout_lines
-
-- name: restart mysql
+- name: restart mysql service
   service:
     name: mysql
     state: restarted

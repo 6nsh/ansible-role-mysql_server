@@ -1,2 +1,5 @@
 ---
-# defaults file for mysql_server
+# defaults file for 6nsh.mysql_server
+mysql_root_password: Aver@gEStr0ngPaSSw0rd
+mysql_bind_address: 127.0.0.1
+mysql_data_dir: /var/lib/mysql

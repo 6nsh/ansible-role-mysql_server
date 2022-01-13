@@ -5,9 +5,5 @@
 {% elif ansible_distribution_major_version == '9' %}
 {% set release = "stretch" %}
 {% endif %}
-{# {% if mysql_server_version == '5' %}
-{% set version = "mysql-5.7" %}
-{% elif mysql_server_version == '8' %}
-{% set version = "mysql-8.0" %}
-{% endif %} #}
-deb http://repo.mysql.com/apt/debian/ {{ release }} mysql-8.0 {# {{ version }} #}
+deb http://repo.mysql.com/apt/debian/ {{ release }} mysql-8.0
+
