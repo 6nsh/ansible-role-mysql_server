@@ -14,7 +14,7 @@ lint: |
   flake8
 platforms:
   - name: instance
-    image: "1am3r/debian:molecule-${MOLECULE_DISTRO:-bullseye}"
+    image: "6nsh/debian:molecule-${MOLECULE_DISTRO:-bullseye}"
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
