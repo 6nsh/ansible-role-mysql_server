@@ -1,13 +1,14 @@
 ---
 - name: Update repo cache and install a few prerequisite packages
   apt:
-    pkg:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg2
-      - software-properties-common
+    pkg: "{{ item }}"
     update_cache: true
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
 
 - name: Add official MySQL Server package authentication key
   apt_key:

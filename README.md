@@ -1,6 +1,7 @@
 # Ansible Role for MySQL Community Server 8.0
 
 ![Build Status](https://github.com/6nsh/ansible-role-mysql_server/actions/workflows/ansible-galaxy-ci.yml/badge.svg)
+[![Galaxy Role](https://img.shields.io/badge/Galaxy-6nsh.mysql_server-48C9B0.svg)](https://galaxy.ansible.com/6nsh/mysql_server/)
 
 This role helps to install and configure MySQL Community Server 8.0 to Debian (buster/bullseye).
 
